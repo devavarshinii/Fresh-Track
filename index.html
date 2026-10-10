@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>FreshGate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== EASY EDIT ZONE (colours and fonts) — change any value below and save the file ===== */
+:root{--bg:#faf7f0;--card:#ffffff;--bd:#e6dfcf;--tx:#1d2b22;--mu:#6b7469;--g:#1f6b45;--side:#1b3a2d;--hd:#1b3a2d;--sel:#fff;--warm:#fff4dc;
+ --head:"Fraunces",Georgia,"Times New Roman",serif;--body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a15;--card:#192520;--bd:#2c3d33;--tx:#e8efe6;--mu:#9fb0a4;--hd:#e7d9b0;--sel:#1e2d25;--warm:#2b2616}}
+:root[data-theme="dark"]{--bg:#111a15;--card:#192520;--bd:#2c3d33;--tx:#e8efe6;--mu:#9fb0a4;--hd:#e7d9b0;--sel:#1e2d25;--warm:#2b2616}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 var(--body);display:flex;min-height:100vh}
+aside{width:236px;background:var(--side);color:#f1ede1;padding:20px 14px;position:sticky;top:0;height:100vh;flex:none;overflow:auto}
+.logo{display:flex;gap:10px;align-items:center;margin:0 6px 4px}.logo svg{flex:none}.logo b{font:700 1.35rem var(--head)}
+aside p{margin:0 6px 16px;font-size:.8rem;opacity:.75}
+#nav button{display:block;width:100%;text-align:left;background:none;border:0;color:#f1ede1;padding:9px 12px;border-radius:10px;font:inherit;cursor:pointer;margin-bottom:2px}
+#nav button:hover{background:rgba(255,255,255,.08)}#nav button.on{background:#f1ede1;color:#1b3a2d;font-weight:600}
+main{flex:1;min-width:0;padding:28px 34px 60px;max-width:1280px}
+h1,h2,h3{font-family:var(--head);color:var(--hd);margin:.1em 0 .25em;letter-spacing:-.01em}h1{font-size:2rem}h2{font-size:1.4rem;margin-top:1.6em}h3{font-size:1.2rem;margin-top:1.5em}h4{margin:.9em 0 .4em}
+.sub{color:var(--mu);margin:0 0 6px}.mu{color:var(--mu);font-size:.88rem}a{color:var(--g);font-weight:600}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;margin:6px 0;box-shadow:0 1px 2px rgba(60,50,20,.05)}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:14px 0}.kg .card{margin:0}
+.click{cursor:pointer}.card.click:hover,.qc:hover,.hr.click:hover{border-color:var(--g)}.hr.click:hover .hl{text-decoration:underline}
+.kl{font-size:.74rem;color:var(--mu);text-transform:uppercase;letter-spacing:.05em}.kv{font:700 1.7rem var(--head);color:var(--hd);line-height:1.2}.ks{font-size:.8rem;color:var(--mu)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.badge{display:inline-block;padding:1px 10px;border-radius:999px;color:#fff;font-size:.76rem;font-weight:600;white-space:nowrap}
+.demo{background:var(--warm);border:1px dashed #d8b85a;color:#6b5400;padding:7px 12px;border-radius:10px;font-size:.84rem;margin:10px 0}
+.note{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--g);padding:10px 14px;border-radius:10px;margin:10px 0}
+.warn{background:#fff3d6;border:1px solid #e8c766;color:#5e4700;padding:10px 14px;border-radius:10px;margin:10px 0}
+.banner{border-radius:14px;padding:16px 20px;color:#fff;font:600 1.25rem/1.35 var(--head);margin:14px 0}.banner small{display:block;font:600 .72rem var(--body);text-transform:uppercase;letter-spacing:.08em;opacity:.85;margin-bottom:2px}
+.pipe{display:flex;align-items:stretch;gap:6px;margin:10px 0 14px;overflow-x:auto;padding-bottom:4px}.step{flex:1;min-width:128px;border-radius:12px;padding:9px;text-align:center;color:#fff}
+.step b{display:block;font-size:.85rem}.step span{font-size:.76rem}.arr{align-self:center;font-size:1.3rem;color:var(--hd)}
+.tw{overflow-x:auto;margin:8px 0;border:1px solid var(--bd);border-radius:12px}table{border-collapse:collapse;width:100%;font-size:.88rem;background:var(--card)}
+th,td{padding:8px 11px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:middle}tr:last-child td{border-bottom:0}th{background:var(--warm);font-size:.74rem;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;color:var(--mu)}
+td input{width:90px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:10px 0}label{display:flex;flex-direction:column;font-size:.8rem;color:var(--mu);gap:3px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:8px 0}.fg input{width:100%}
+input,select{font:inherit;padding:7px 10px;border:1px solid var(--bd);border-radius:9px;background:var(--sel);color:var(--tx);max-width:100%}input.wide{width:100%;margin:10px 0}input[type=color]{padding:2px;height:36px;width:70px}
+.btn{background:var(--g);color:#fff;border:1px solid var(--g);padding:9px 16px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer}.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--g)}.btn.sm{padding:4px 11px;font-size:.82rem}.btn.danger{background:#b83b3b;border-color:#b83b3b;color:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.chip{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:5px 14px;border-radius:999px;font:inherit;cursor:pointer}.chip.on{background:var(--g);border-color:var(--g);color:#fff}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}.qc{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.qh{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.qa{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ed{border:2px solid var(--g)}.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:10px 0}.sl input{width:100%;padding:0}.sl b{color:var(--hd)}
+.why li{margin:.45em 0}.cap{font-size:.8rem;color:var(--mu)}.msg{margin-top:8px;font-weight:600}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 14px;margin:10px 0}summary{cursor:pointer;font-weight:600}
+.hb{display:flex;flex-direction:column;gap:7px}.hr{display:grid;grid-template-columns:minmax(110px,42%) 1fr 74px;gap:8px;align-items:center;font-size:.82rem;border:1px solid transparent;border-radius:8px;padding:1px 3px}
+.hl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ht{background:rgba(120,130,110,.18);border-radius:6px;height:14px;display:block}.ht i{display:block;height:100%;border-radius:6px}.hr b{text-align:right}
+.lc{width:100%;max-width:700px;background:var(--card);border:1px solid var(--bd);border-radius:12px}.ax{font-size:11px;fill:var(--mu)}.axl{stroke:var(--bd)}.lg{font-size:.82rem;margin:4px 0}
+@media(max-width:820px){body{flex-direction:column}aside{width:100%;height:auto;position:static;padding:10px 12px}#nav{display:flex;gap:4px;overflow-x:auto}#nav button{width:auto;white-space:nowrap}main{padding:16px 14px 50px}h1{font-size:1.6rem}.hr{grid-template-columns:90px 1fr 62px}}
+</style></head><body><aside><div class="logo"><svg width="30" height="30" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#f1ede1"/><path d="M8 24V12a8 8 0 0 1 16 0v12" fill="none" stroke="#1b3a2d" stroke-width="3" stroke-linecap="round"/><path d="M16 24c0-5 3-8 7-8-.2 4.6-2.8 7.8-7 8z" fill="#7cc07a"/></svg><b id="bn">FreshGate</b></div><p id="bt"></p><div id="nav"></div></aside><main id="main"></main>
+<script>
+/* ===== EASY EDIT ZONE (name and wording) — change these and save the file, or use the Settings screen in the app ===== */
+const CFG={brand:"FreshGate",tagline:"Check the order before it turns into waste.",cur:"₹",accent:"#1f6b45",user:""};
+const D={"products":[{"sku":"MLK-1L","product":"Full Cream Milk 1L","cat":"Dairy","store":"Store A","shelf":6,"cost":48.0,"price":62.0,"moq":24,"pack":12,"cap":300,"safety":24,"lead":1,"cycle":2,"sales":{"n":28,"u":[39,41,44,39,44,38,43,34,56,54,39,32,43,41]},"lots":[{"id":"MLK-1L-A-L1","qty":65.0,"exp":2},{"id":"MLK-1L-A-L2","qty":54.0,"exp":4}],"inc":[]},{"sku":"MLK-1L","product":"Full Cream Milk 1L","cat":"Dairy","store":"Store B","shelf":6,"cost":48.0,"price":62.0,"moq":24,"pack":12,"cap":240,"safety":17,"lead":1,"cycle":2,"sales":{"n":28,"u":[30,25,39,31,24,36,23,29,42,39,30,30,27,28]},"lots":[{"id":"MLK-1L-B-L1","qty":36.0,"exp":4},{"id":"MLK-1L-B-L2","qty":40.0,"exp":5}],"inc":[{"id":"INC-MLK-1L-B","qty":120.0,"arr":1,"exp":6}]},{"sku":"MLK-1L","product":"Full Cream Milk 1L","cat":"Dairy","store":"Store C","shelf":6,"cost":48.0,"price":62.0,"moq":24,"pack":12,"cap":300,"safety":31,"lead":1,"cycle":2,"sales":{"n":28,"u":[53,60,56,62,62,52,58,49,71,81,42,43,54,45]},"lots":[{"id":"MLK-1L-C-L1","qty":97.0,"exp":1},{"id":"MLK-1L-C-L2","qty":79.0,"exp":4}],"inc":[]},{"sku":"YOG-400","product":"Greek Yogurt 400g","cat":"Dairy","store":"Store A","shelf":10,"cost":55.0,"price":80.0,"moq":24,"pack":12,"cap":200,"safety":12,"lead":1,"cycle":3,"sales":{"n":28,"u":[22,27,23,24,17,17,23,15,26,15,19,23,13,13]},"lots":[{"id":"YOG-400-A-L1","qty":140.0,"exp":3},{"id":"YOG-400-A-L2","qty":120.0,"exp":7}],"inc":[{"id":"INC-YOG-400-A","qty":60.0,"arr":1,"exp":10}]},{"sku":"YOG-400","product":"Greek Yogurt 400g","cat":"Dairy","store":"Store B","shelf":10,"cost":55.0,"price":80.0,"moq":24,"pack":12,"cap":160,"safety":8,"lead":1,"cycle":3,"sales":{"n":28,"u":[10,15,12,11,11,19,11,17,20,17,15,8,7,7]},"lots":[{"id":"YOG-400-B-L1","qty":11.0,"exp":1},{"id":"YOG-400-B-L2","qty":9.0,"exp":4}],"inc":[]},{"sku":"YOG-400","product":"Greek Yogurt 400g","cat":"Dairy","store":"Store C","shelf":10,"cost":55.0,"price":80.0,"moq":24,"pack":12,"cap":200,"safety":16,"lead":1,"cycle":3,"sales":{"n":28,"u":[27,29,41,29,17,26,23,20,28,38,30,29,26,31]},"lots":[{"id":"YOG-400-C-L1","qty":20.0,"exp":4}],"inc":[]},{"sku":"PNR-200","product":"Paneer 200g","cat":"Dairy","store":"Store A","shelf":12,"cost":70.0,"price":95.0,"moq":12,"pack":6,"cap":120,"safety":6,"lead":1,"cycle":3,"sales":{"n":28,"u":[22,18,12,13,9,11,13,15,16,19,14,15,16,16]},"lots":[{"id":"PNR-200-A-L1","qty":26.0,"exp":1},{"id":"PNR-200-A-L2","qty":22.0,"exp":3}],"inc":[{"id":"INC-PNR-200-A","qty":36.0,"arr":2,"exp":13}]},{"sku":"PNR-200","product":"Paneer 200g","cat":"Dairy","store":"Store B","shelf":12,"cost":70.0,"price":95.0,"moq":12,"pack":6,"cap":96,"safety":4,"lead":1,"cycle":3,"sales":{"n":28,"u":[13,4,14,8,10,10,11,9,17,12,11,13,5,5]},"lots":[{"id":"PNR-200-B-L1","qty":17.0,"exp":3},{"id":"PNR-200-B-L2","qty":14.0,"exp":4}],"inc":[{"id":"INC-PNR-200-B","qty":24.0,"arr":1,"exp":12}]},{"sku":"PNR-200","product":"Paneer 200g","cat":"Dairy","store":"Store C","shelf":12,"cost":70.0,"price":95.0,"moq":12,"pack":6,"cap":120,"safety":8,"lead":1,"cycle":3,"sales":{"n":28,"u":[19,24,22,23,22,14,16,21,26,30,12,21,24,20]},"lots":[{"id":"PNR-200-C-L1","qty":13.0,"exp":3},{"id":"PNR-200-C-L2","qty":11.0,"exp":5}],"inc":[{"id":"INC-PNR-200-C","qty":48.0,"arr":2,"exp":13}]},{"sku":"BRD-WW","product":"Whole Wheat Bread","cat":"Bakery","store":"Store A","shelf":4,"cost":28.0,"price":40.0,"moq":20,"pack":10,"cap":160,"safety":10,"lead":1,"cycle":2,"sales":{"n":28,"u":[31,23,35,23,27,24,35,20,29,25,21,21,20,24]},"lots":[{"id":"BRD-WW-A-L1","qty":18.0,"exp":1},{"id":"BRD-WW-A-L2","qty":15.0,"exp":3}],"inc":[]},{"sku":"BRD-WW","product":"Whole Wheat Bread","cat":"Bakery","store":"Store B","shelf":4,"cost":28.0,"price":40.0,"moq":20,"pack":10,"cap":128,"safety":7,"lead":1,"cycle":2,"sales":{"n":28,"u":[22,21,18,15,14,23,18,18,21,16,13,25,19,16]},"lots":[{"id":"BRD-WW-B-L1","qty":16.0,"exp":2},{"id":"BRD-WW-B-L2","qty":14.0,"exp":4}],"inc":[]},{"sku":"BRD-WW","product":"Whole Wheat Bread","cat":"Bakery","store":"Store C","shelf":4,"cost":28.0,"price":40.0,"moq":20,"pack":10,"cap":160,"safety":13,"lead":1,"cycle":2,"sales":{"n":28,"u":[30,44,50,35,45,37,33,33,39,38,31,23,35,27]},"lots":[{"id":"BRD-WW-C-L1","qty":30.0,"exp":2}],"inc":[]},{"sku":"LEF-SPN","product":"Fresh Spinach Bunch","cat":"Leafy Vegetables","store":"Store A","shelf":3,"cost":12.0,"price":20.0,"moq":20,"pack":10,"cap":120,"safety":8,"lead":1,"cycle":2,"sales":{"n":28,"u":[22,21,24,15,18,25,24,15,24,16,24,26,15,21]},"lots":[{"id":"LEF-SPN-A-L1","qty":34.0,"exp":2},{"id":"LEF-SPN-A-L2","qty":28.0,"exp":3}],"inc":[]},{"sku":"LEF-SPN","product":"Fresh Spinach Bunch","cat":"Leafy Vegetables","store":"Store B","shelf":3,"cost":12.0,"price":20.0,"moq":20,"pack":10,"cap":96,"safety":6,"lead":1,"cycle":2,"sales":{"n":28,"u":[14,17,14,17,8,10,9,13,23,14,11,15,18,15]},"lots":[{"id":"LEF-SPN-B-L1","qty":15.0,"exp":1},{"id":"LEF-SPN-B-L2","qty":12.0,"exp":3}],"inc":[]},{"sku":"LEF-SPN","product":"Fresh Spinach Bunch","cat":"Leafy Vegetables","store":"Store C","shelf":3,"cost":12.0,"price":20.0,"moq":20,"pack":10,"cap":120,"safety":10,"lead":1,"cycle":2,"sales":{"n":28,"u":[15,28,43,18,28,32,31,24,45,38,24,27,23,27]},"lots":[{"id":"LEF-SPN-C-L1","qty":34.0,"exp":1},{"id":"LEF-SPN-C-L2","qty":27.0,"exp":3}],"inc":[]},{"sku":"FRT-BAN","product":"Bananas (kg)","cat":"Fruit","store":"Store A","shelf":5,"cost":36.0,"price":55.0,"moq":20,"pack":10,"cap":200,"safety":15,"lead":1,"cycle":3,"sales":{"n":28,"u":[27,35,33,35,24,37,22,30,36,36,26,37,30,33]},"lots":[{"id":"FRT-BAN-A-L1","qty":51.0,"exp":1},{"id":"FRT-BAN-A-L2","qty":41.0,"exp":3}],"inc":[]},{"sku":"FRT-BAN","product":"Bananas (kg)","cat":"Fruit","store":"Store B","shelf":5,"cost":36.0,"price":55.0,"moq":20,"pack":10,"cap":160,"safety":10,"lead":1,"cycle":3,"sales":{"n":28,"u":[30,31,27,21,19,19,13,20,28,20,21,11,12,22]},"lots":[{"id":"FRT-BAN-B-L1","qty":31.0,"exp":2},{"id":"FRT-BAN-B-L2","qty":26.0,"exp":4}],"inc":[{"id":"INC-FRT-BAN-B","qty":60.0,"arr":2,"exp":6}]},{"sku":"FRT-BAN","product":"Bananas (kg)","cat":"Fruit","store":"Store C","shelf":5,"cost":36.0,"price":55.0,"moq":20,"pack":10,"cap":200,"safety":20,"lead":1,"cycle":3,"sales":{"n":28,"u":[42,59,35,42,38,47,36,37,56,54,33,31,41,48]},"lots":[{"id":"FRT-BAN-C-L1","qty":32.0,"exp":2},{"id":"FRT-BAN-C-L2","qty":27.0,"exp":3}],"inc":[{"id":"INC-FRT-BAN-C","qty":80.0,"arr":2,"exp":6}]},{"sku":"FRT-APL","product":"Apples (kg)","cat":"Fruit","store":"Store A","shelf":14,"cost":110.0,"price":150.0,"moq":20,"pack":10,"cap":200,"safety":12,"lead":2,"cycle":5,"sales":{"n":28,"u":[16,24,23,31,24,26,14,22,26,28,15,29,21,23]},"lots":[{"id":"FRT-APL-A-L1","qty":26.0,"exp":7},{"id":"FRT-APL-A-L2","qty":22.0,"exp":9}],"inc":[{"id":"INC-FRT-APL-A","qty":40.0,"arr":1,"exp":14}]},{"sku":"FRT-APL","product":"Apples (kg)","cat":"Fruit","store":"Store B","shelf":14,"cost":110.0,"price":150.0,"moq":20,"pack":10,"cap":160,"safety":8,"lead":2,"cycle":5,"sales":{"n":28,"u":[20,18,27,18,9,11,15,19,16,18,20,5,17,12]},"lots":[{"id":"FRT-APL-B-L1","qty":30.0,"exp":2},{"id":"FRT-APL-B-L2","qty":25.0,"exp":3}],"inc":[{"id":"INC-FRT-APL-B","qty":30.0,"arr":2,"exp":15}]},{"sku":"FRT-APL","product":"Apples (kg)","cat":"Fruit","store":"Store C","shelf":14,"cost":110.0,"price":150.0,"moq":20,"pack":10,"cap":200,"safety":16,"lead":2,"cycle":5,"sales":{"n":28,"u":[31,34,32,27,36,33,30,34,30,37,17,35,27,24]},"lots":[{"id":"FRT-APL-C-L1","qty":53.0,"exp":6},{"id":"FRT-APL-C-L2","qty":44.0,"exp":7}],"inc":[{"id":"INC-FRT-APL-C","qty":50.0,"arr":1,"exp":14}]},{"sku":"PKG-SAL","product":"Packaged Salad Kit","cat":"Packaged Perishables","store":"Store A","shelf":5,"cost":65.0,"price":99.0,"moq":12,"pack":6,"cap":60,"safety":6,"lead":1,"cycle":3,"sales":{"n":28,"u":[17,9,12,9,6,3,8,10,11,8,9,7,7,13]},"lots":[{"id":"PKG-SAL-A-L1","qty":16.0,"exp":2},{"id":"PKG-SAL-A-L2","qty":13.0,"exp":3}],"inc":[]},{"sku":"PKG-SAL","product":"Packaged Salad Kit","cat":"Packaged Perishables","store":"Store B","shelf":5,"cost":65.0,"price":99.0,"moq":12,"pack":6,"cap":48,"safety":4,"lead":1,"cycle":3,"sales":{"n":28,"u":[8,5,9,4,9,5,3,3,5,7,12,6,4,8]},"lots":[{"id":"PKG-SAL-B-L1","qty":7.0,"exp":2},{"id":"PKG-SAL-B-L2","qty":5.0,"exp":4}],"inc":[{"id":"INC-PKG-SAL-B","qty":18.0,"arr":2,"exp":6}]},{"sku":"PKG-SAL","product":"Packaged Salad Kit","cat":"Packaged Perishables","store":"Store C","shelf":5,"cost":65.0,"price":99.0,"moq":12,"pack":6,"cap":60,"safety":8,"lead":1,"cycle":3,"sales":{"n":28,"u":[11,14,14,6,10,11,9,5,16,16,19,16,10,12]},"lots":[{"id":"PKG-SAL-C-L1","qty":9.0,"exp":1},{"id":"PKG-SAL-C-L2","qty":7.0,"exp":3}],"inc":[{"id":"INC-PKG-SAL-C","qty":30.0,"arr":1,"exp":5}]},{"sku":"NEW-JUC","product":"Cold-pressed Juice 250ml (new)","cat":"Packaged Perishables","store":"Store B","shelf":7,"cost":45.0,"price":80.0,"moq":12,"pack":6,"cap":48,"safety":4,"lead":1,"cycle":3,"sales":{"n":3,"u":[6,9,4]},"lots":[{"id":"NEW-JUC-B-L1","qty":10.0,"exp":1},{"id":"NEW-JUC-B-L2","qty":8.0,"exp":4}],"inc":[]}],"pending":[{"id":"PO-001","sku":"YOG-400","store":"Store A","qty":120,"day":2},{"id":"PO-002","sku":"MLK-1L","store":"Store A","qty":120,"day":1},{"id":"PO-003","sku":"BRD-WW","store":"Store A","qty":80,"day":1},{"id":"PO-004","sku":"MLK-1L","store":"Store B","qty":48,"day":2},{"id":"PO-005","sku":"LEF-SPN","store":"Store B","qty":90,"day":1},{"id":"PO-006","sku":"FRT-BAN","store":"Store B","qty":50,"day":1},{"id":"PO-007","sku":"BRD-WW","store":"Store C","qty":100,"day":1},{"id":"PO-008","sku":"PKG-SAL","store":"Store C","qty":96,"day":2},{"id":"PO-009","sku":"FRT-APL","store":"Store C","qty":120,"day":2},{"id":"PO-010","sku":"PNR-200","store":"Store A","qty":72,"day":2},{"id":"PO-011","sku":"NEW-JUC","store":"Store B","qty":18,"day":1}]};
+// ===== ShelfSense engine (JavaScript port of the Python agents; rule-based, no AI service) =====
+const C={ma:7,W:{low:.25,mid:.5,high:.25},maxSim:60,pen:2,maxDelay:3,tcost:2,minT:6,el:2,lo:.05,hi:.15};
+const sum=a=>a.reduce((x,y)=>x+y,0), mean=a=>sum(a)/a.length;
+const lvl=p=>p<C.lo?"Low":p<C.hi?"Medium":"High";
+function demand(s,m=1){const n=s.n;if(!n)return{daily:0,std:0,base:0,n:0,ok:false,conf:"None",cv:null,note:"No sales history."};
+ const u=s.u,ma=mean(u.slice(-C.ma)),t=u.slice(-14),mu=mean(t),std=Math.sqrt(mean(t.map(x=>(x-mu)**2)));
+ const ok=n>=Math.min(C.ma,7)&&ma>0,cv=ma>0?std/ma:null,conf=(!ok||(cv||0)>.6)?"Low":(n>=14&&(cv||0)<.35?"High":"Medium");
+ return{daily:ma*m,std:std*m,base:ma,n,ok,cv,conf,note:ok?"":`Only ${n} day(s) of sales history so far (I need at least 7), so I can't forecast this one reliably.`}}
+function sim(lots,arr,dem,H,minEnd){const ex=[...lots.map(l=>l.exp),...arr.map(a=>a.exp)];
+ const end=Math.min(Math.max(...ex,H,minEnd),C.maxSim);
+ let st=lots.filter(l=>l.qty>0).map(l=>[l.exp,l.qty,l.id]),waste={},tl=[],si=[],sold=0,so=0,sod=0,fso=null;
+ for(let d=0;d<=end;d++){arr.forEach(a=>{if(a.arr===d&&a.qty>0)st.push([a.exp,a.qty,a.id])});
+  const k=[];st.forEach(e=>{if(e[0]<=d)waste[e[2]]=(waste[e[2]]||0)+e[1];else k.push(e)});
+  st=k.sort((a,b)=>a[0]-b[0]);si.push(sum(st.map(e=>e[1])));
+  const w=Array.isArray(dem)?dem[d]:dem;let need=w;
+  for(const e of st){const t=Math.min(e[1],need);e[1]-=t;need-=t;if(need<=1e-9)break}
+  sold+=w-Math.max(need,0);st=st.filter(e=>e[1]>1e-9);
+  if(need>1e-9&&d<H){so+=need;sod++;if(fso===null)fso=d}
+  tl.push(sum(st.map(e=>e[1])))}
+ return{waste:sum(Object.values(waste)),wbl:waste,sold,so,sod,fso,tl,si}}
+function fresh(c,dem,q,dd,H){const p=c.p,arr=[...c.arr];
+ if(q>0)arr.push({id:"NEW-ORDER",qty:q,arr:dd,exp:dd+p.shelf});
+ const me=Math.max(dd,H)+C.maxDelay+2,cs={};
+ [["low",-1],["mid",0],["high",1]].forEach(([k,z])=>cs[k]=sim(c.lots,arr,Math.max(0,dem.daily+z*dem.std),H,me));
+ const ex=f=>Object.keys(cs).reduce((s,k)=>s+C.W[k]*f(cs[k]),0);
+ const waste=ex(x=>x.waste),so=ex(x=>x.so),sold=ex(x=>x.sold);
+ const tot=sum(c.lots.map(l=>l.qty))+sum(arr.map(a=>a.qty)),wp=tot>0?waste/tot:0;
+ const prob=Object.keys(cs).filter(k=>cs[k].so>.5).reduce((s,k)=>s+C.W[k],0),mid=cs.mid;
+ return{q,dd,H,waste,wv:waste*p.cost,wr:[cs.high.waste,cs.low.waste],wp,wl:lvl(wp),nlw:mid.wbl["NEW-ORDER"]||0,so,prob,
+  sl:prob==0?"Low":prob<=.25?"Medium":"High",sold,rev:sold*p.price,oc:q*p.cost,net:sold*p.price-q*p.cost,
+  obj:waste*p.cost+so*(p.price-p.cost)*C.pen,ib:mid.tl[Math.max(dd-1,0)],ia:mid.si[dd],tl:mid.tl,wbl:mid.wbl}}
+function repl(p,dem,ib){const cover=Math.min(p.cycle,p.shelf),target=dem.daily*cover+p.safety,need=target-ib,notes=[];let q=0;
+ if(need>0){q=Math.ceil(need/p.pack)*p.pack;
+  if(q<p.moq){q=Math.ceil(p.moq/p.pack)*p.pack;notes.push(`rounded up to the minimum order quantity (${p.moq})`)}
+  const room=Math.floor(Math.max(p.cap-ib,0)/p.pack)*p.pack;
+  if(q>room){notes.push(`limited by storage capacity (${p.cap} units)`);q=room>=p.moq?room:0}}
+ return{q,need,target,cover,ib,notes}}
+const checks=(p,q,ib)=>[{name:"Minimum order quantity",ok:q==0||q>=p.moq,detail:`${q} ordered vs minimum ${p.moq}`},
+ {name:"Supplier pack size",ok:q%p.pack==0,detail:`${q} units vs packs of ${p.pack}`},
+ {name:"Storage capacity",ok:q==0||ib+q<=p.cap,detail:`${Math.round(ib+q)} units on shelf vs capacity ${p.cap}`}];
+function tmAgent(c,dem,ex,sibs){const p=c.p,byId={};c.lots.forEach(l=>byId[l.id]=l);
+ const risk=Object.entries(ex.wbl).filter(([id,u])=>byId[id]&&u>=1).map(([id,u])=>[id,byId[id],u]);
+ const info=[];sibs.forEach(s=>{const sd=demand(s.p.sales,1);if(!sd.ok)return;
+  info.push([s.p.store,sd.daily,sum(s.lots.map(l=>l.qty))+sum(s.arr.map(a=>a.qty)),s.p.cap])});
+ const left={};risk.forEach(([id,,u])=>left[id]=u);const transfers=[],markdowns=[];
+ [...risk].sort((a,b)=>a[1].exp-b[1].exp).forEach(([id,lot,u])=>{if(lot.exp<2)return;let best=null;
+  info.forEach(([store,sd,ss,sc])=>{const ab=Math.max(0,sd*(lot.exp-1)-ss),q=Math.floor(Math.min(u,ab,Math.max(sc-ss,0)));
+   if(q>=C.minT&&(!best||q>best.q))best={id,to:store,q,exp:lot.exp,nb:q*(p.cost-C.tcost),
+    why:`${store} sells about ${sd.toFixed(1)} units/day and holds ${Math.round(ss)}, so it can sell ~${Math.round(ab)} more before this lot expires`}});
+  if(best){transfers.push(best);left[id]=u-best.q}});
+ risk.forEach(([id,lot,u])=>{const rem=left[id]??u;if(rem<1||lot.exp<1)return;const d=lot.exp,pct=d<=2?.3:d<=4?.2:.1;
+  const extra=Math.min(rem,dem.daily*d*C.el*pct),rec=extra*p.price*(1-pct),lost=Math.max(lot.qty-u,0)*p.price*pct;
+  if(rec-lost>0)markdowns.push({id,pct:Math.round(pct*100),extra,exp:d,nb:rec-lost,
+   why:`${Math.round(pct*100)}% markdown could sell ~${Math.round(extra)} of the ${Math.round(rem)} at-risk units (assumed price elasticity ${C.el})`})});
+ return{risk,transfers,markdowns}}
+function gate(c,pq,dd,sibs=[]){const p=c.p;pq=Math.round(pq);dd=Math.round(dd);
+ const H=dd+p.cycle,dem=demand(p.sales,c.o.dem),base={p,dem,pq,dd};
+ if(!dem.ok)return{...base,action:"REVIEW",headline:"Needs your eyes: not enough sales history to judge this order.",
+  reasons:[dem.note,"I would rather not guess when the data is thin. Check demand yourself and decide whether to keep the order as planned."],
+  proposed:null,rec:{q:pq,day:dd,o:null},also:[],ag:{dem},opts:[],chk:[],chkRec:[],
+  pipe:[["Demand Agent","warn",`Only ${dem.n} day(s) of data`],["Freshness Agent","skip","Skipped"],["Replenishment Agent","skip","Skipped"],["Coordinator","review","Manager review needed"],["Manager Approval","wait","Awaiting decision"]]};
+ const memo={},ev=(q,d)=>memo[q+"|"+d]??(memo[q+"|"+d]=fresh(c,dem,q,d,H));
+ const none=ev(0,dd),ib0=none.tl[dd-1],rp=repl(p,dem,ib0),tm=tmAgent(c,dem,none,sibs);
+ const qs=new Set([0,pq,rp.q]);for(let k=-3;k<=3;k++){qs.add(Math.max(0,rp.q+k*p.pack));qs.add(Math.max(0,pq+k*p.pack))}
+ const opts=[];
+ for(let d=dd;d<=dd+C.maxDelay;d++){const ib=none.tl[d-1];
+  [...qs].sort((a,b)=>a-b).forEach(q=>{if(q==0&&d!=dd)return;if(checks(p,q,ib).every(x=>x.ok)){const o=ev(q,d);opts.push({q,day:d,obj:o.obj,waste:o.waste,so:o.so})}})}
+ opts.sort((a,b)=>a.obj-b.obj);
+ const orig=ev(pq,dd),chk=checks(p,pq,ib0),valid=chk.every(x=>x.ok),eps=.25*p.pack*p.cost,bo=opts[0].obj;
+ const best=opts.filter(o=>o.obj<=bo+1e-6).sort((a,b)=>(Math.abs(a.day-dd)-Math.abs(b.day-dd))||(Math.abs(a.q-pq)-Math.abs(b.q-pq)))[0];
+ let rq=best.q,rd=best.day;if(valid&&orig.obj<=bo+eps){rq=pq;rd=dd}
+ const rec=ev(rq,rd);
+ let action=rq==pq&&rd==dd?"APPROVE":rd>dd?"DELAY":rq<pq?"REDUCE":"INCREASE";
+ const also=[];
+ if(tm.transfers.length){const t=tm.transfers[0];also.push(["TRANSFER",`Review moving ${t.q} units of lot ${t.id} to ${t.to}: ${t.why}.`])}
+ if(tm.markdowns.length){const m=tm.markdowns[0];also.push(["MARKDOWN",`Consider a ${m.pct}% markdown on lot ${m.id}: ${m.why}.`])}
+ if(pq==0&&rq==0&&also.length)action=also[0][0];
+ const D=(q,d)=>q>0?`${q} units for ${dstr(d)}`:"no order";
+ const headline={APPROVE:`Go ahead: ordering ${D(pq,dd)} looks right.`,REDUCE:rq==0?"Skip this order: you already have enough stock.":`Order fewer: ${rq} units instead of ${pq}.`,
+  DELAY:`Hold off: order ${D(rq,rd)} instead of ${D(pq,dd)}.`,INCREASE:`Order more: ${rq} units instead of ${pq}, so you don't run out.`,
+  TRANSFER:"Move some stock to another store before it expires.",MARKDOWN:"Mark some stock down before it expires."}[action];
+ const cur=sum(c.lots.map(l=>l.qty)),inc=sum(c.arr.map(a=>a.qty)),soon=c.lots.length?Math.min(...c.lots.map(l=>l.exp)):null,R=[],lc=s=>s.toLowerCase();
+ R.push(`Sales are running at about ${dem.daily.toFixed(1)} a day (average of the last ${C.ma} days, give or take ${dem.std.toFixed(1)}). My confidence in that: ${lc(dem.conf)}.`);
+ R.push(`On the shelf: ${Math.round(cur)} units${soon!==null?`, and the oldest batch runs out of time in ${soon} day(s)`:""}. Coming in: ${Math.round(inc)} more. By the time this delivery lands you'd probably still have ${Math.round(ib0)} sellable units.`);
+ R.push(`If you order as planned, about ${Math.round(orig.waste)} units (≈ ${money(orig.wv)}) may pass their date unsold, ${Math.round(orig.nlw)} of them from the new batch. That's a ${lc(orig.wl)} waste risk.`);
+ R.push(`To cover ${rp.cover} day(s) of sales plus a safety cushion of ${p.safety}, you'd want about ${Math.round(rp.target)} on hand. You'd have ${Math.round(ib0)}, so the gap is ${Math.round(Math.max(rp.need,0))}. After pack size, minimum order and storage limits that means ordering ${rp.q}${rp.notes.length?` (${rp.notes.join("; ")})`:""}.`);
+ chk.forEach(x=>{if(!x.ok)R.push(`Heads up: your planned order breaks a rule: ${x.name} (${x.detail}).`)});
+ if(action!="APPROVE"||!valid)R.push(`I compared ${opts.length} quantity-and-date combinations, weighing the cost of waste against the cost of running out. ${D(rq,rd)} comes out cheapest (about ${money(rec.obj)} versus ${money(orig.obj)} for your plan).`);
+ else R.push(`I couldn't find a combination that beats your plan by a meaningful amount (expected cost ${money(orig.obj)}). Stockout risk is ${lc(orig.sl)} and waste risk is ${lc(orig.wl)}.`);
+ if(rec.prob>0)R.push(`Keep an eye on it: in ${Math.round(rec.prob*100)}% of demand cases you could run short (about ${Math.round(rec.so)} units).`);
+ also.forEach(a=>R.push(a[1]));
+ return{...base,action,headline,reasons:R,also,proposed:{q:pq,day:dd,o:orig},rec:{q:rq,day:rd,o:rec},ag:{dem,rp,tm,none},opts,chk,chkRec:checks(p,rq,none.tl[rd-1]),
+  pipe:[["Demand Agent","ok",`${dem.daily.toFixed(1)} units/day`],["Freshness Agent",orig.wl=="High"?"bad":orig.wl=="Medium"?"warn":"ok",`${orig.wl} waste risk, ${Math.round(orig.waste)} units`],
+  ["Replenishment Agent","ok",`Suggests ${rp.q} units`],["Coordinator",action=="APPROVE"?"ok":"warn",action],["Manager Approval","wait","Awaiting decision"]]}}
+// ===== data helpers =====
+const AS=new Date();AS.setHours(0,0,0,0);
+const dstr=d=>{const x=new Date(AS);x.setDate(x.getDate()+d);return x.toLocaleDateString("en-GB",{day:"2-digit",month:"short"})};
+const money=x=>CFG.cur+Math.round(x).toLocaleString("en-IN");
+function ctx(p,o={}){const O={dem:1,inc:1,delay:0,shift:0,...o};
+ return{p,o:O,lots:p.lots.map(l=>({...l,exp:l.exp+O.shift})),arr:p.inc.map(a=>({id:a.id,qty:Math.round(a.qty*O.inc),arr:a.arr+O.delay,exp:a.exp}))}}
+
+
+// ===== App: state, saving, screens =====
+const D0=JSON.parse(JSON.stringify(D)),C0={...C},CFG0={...CFG};
+let LOG=[],SEQ=100,EVAL=null;
+const KEY="freshgate_v1",todayISO=()=>AS.toISOString().slice(0,10);
+function save(){try{localStorage.setItem(KEY,JSON.stringify({base:todayISO(),products:D.products,pending:D.pending,cfg:CFG,C,log:LOG,seq:SEQ}))}catch(e){}}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(!(s&&s.products))return;D.products=s.products;D.pending=s.pending;Object.assign(CFG,s.cfg);Object.assign(C,s.C);LOG=s.log||[];SEQ=s.seq||100;
+ const dd=Math.round((AS-new Date(s.base+"T00:00:00"))/864e5);   // days passed since last visit: move the clock forward
+ if(dd>0){D.products.forEach(p=>{p.lots=p.lots.map(l=>({...l,exp:l.exp-dd})).filter(l=>l.exp>0);const keep=[];p.inc.forEach(a=>{a={...a,arr:a.arr-dd,exp:a.exp-dd};if(a.arr<=0){if(a.exp>0)p.lots.push({id:a.id,qty:a.qty,exp:a.exp})}else keep.push(a)});p.inc=keep});
+  D.pending.forEach(o=>o.day=Math.max(1,o.day-dd))}}catch(e){}}
+load();
+const PR={},STORES=()=>[...new Set(D.products.map(p=>p.store))],H=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const sibsOf=c=>D.products.filter(p=>p.sku==c.p.sku&&p.store!=c.p.store).map(p=>ctx(p));
+const run=(p,q,d,o)=>{const c=ctx(p,o);return gate(c,q,d,sibsOf(c))};
+const RC={Low:"#2e9e5b",Medium:"#d99a14",High:"#d64545",Unknown:"#7d857f"},AC={APPROVE:"#2e9e5b",REDUCE:"#d99a14",DELAY:"#d99a14",INCREASE:"#2b7bb9",TRANSFER:"#7a4fb0",MARKDOWN:"#7a4fb0",REVIEW:"#d64545"};
+const AL={APPROVE:"Go ahead",REDUCE:"Order less",DELAY:"Hold off",INCREASE:"Order more",TRANSFER:"Move stock",MARKDOWN:"Mark down",REVIEW:"Needs you"};
+const SC={ok:"#2e9e5b",warn:"#d99a14",bad:"#d64545",wait:"#66776c",skip:"#97a09a",review:"#d64545"};
+const PAGES=["Today","Stock","Order Gate","Freshness","What-if","Decisions","Compare","Settings"];
+const PREP=[{t:"1. Too much stock, short dates",sku:"YOG-400",store:"Store A",qty:120,day:2,dem:1,inc:1,delay:0,shift:0,x:"Store A already has 260 yogurts and 140 of them run out of date in 3 days, yet a 120-unit order is planned. Does the gate talk you out of it?"},
+ {t:"2. The delivery turns up late",sku:"MLK-1L",store:"Store B",qty:48,day:2,dem:1,inc:1,delay:3,shift:0,x:"The 120-unit milk delivery is 3 days late. Watch the stockout risk appear and see what changes. Set the delay back to 0 to compare."},
+ {t:"3. The order is actually needed",sku:"BRD-WW",store:"Store C",qty:100,day:1,dem:1,inc:1,delay:0,shift:0,x:"Store C has 30 loaves and sells about 32 a day with nothing coming. Ordering more is the right call, so the gate should say go ahead."}];
+let OV,LOTS,SUG,PEND;
+const mdone=(p,id)=>(p.lots.find(l=>l.id==id)||{}).md;
+function recompute(){D.products.forEach(p=>PR[p.sku+"|"+p.store]=p);Object.keys(PR).forEach(k=>{if(!D.products.includes(PR[k]))delete PR[k]});EVAL=null;
+ OV=D.products.map(p=>{const c=ctx(p),dm=demand(p.sales),st=sum(c.lots.map(l=>l.qty)),inc=sum(c.arr.map(a=>a.qty)),rec=p.sales.u.slice(-7);
+  const r={p,stock:st,inc,avg:rec.length?mean(rec):0,next:c.lots.length?Math.min(...c.lots.map(l=>l.exp)):null,fc:dm.daily,ok:dm.ok};
+  if(!dm.ok)return{...r,wl:"Unknown",sl:"Unknown",waste:null,wv:null};
+  const f=fresh(c,dm,0,1,p.lead+p.cycle),tm=tmAgent(c,dm,f,sibsOf(c));return{...r,wl:f.wl,sl:f.sl,waste:f.waste,wv:f.wv,so:f.so,f,tm,c}});
+ LOTS=[];SUG=[];OV.forEach(o=>{if(!o.ok)return;o.c.lots.forEach(l=>{const u=o.f.wbl[l.id]||0;LOTS.push({o,l,u,loss:u*o.p.cost,risk:l.qty&&u/l.qty>=.3?"High":u/Math.max(l.qty,1)>=.1?"Medium":"Low"})});
+  o.tm.transfers.forEach(t=>SUG.push({o,type:"Transfer",id:t.id,d:`Move ${t.q} units to ${t.to}`,nb:t.nb,why:t.why,t}));
+  o.tm.markdowns.forEach(m=>{if(!mdone(o.p,m.id))SUG.push({o,type:"Markdown",id:m.id,d:`${m.pct}% off`,nb:m.nb,why:m.why,m})})});
+ PEND=D.pending.filter(o=>PR[o.sku+"|"+o.store]).map(o=>{const p=PR[o.sku+"|"+o.store];return{...o,p,res:run(p,o.qty,o.day)}})}
+recompute();
+const S={page:"Today",sf:"All",inv:{q:"",store:"All",risk:"All",srisk:"All"},g:{store:"Store A",sku:"YOG-400",qty:120,day:2,res:null,key:""},
+ sm:{pick:0,...PREP[0]},ap:{choice:"Approve recommendation",mq:0,md:1,reason:"",oid:(D.pending[0]||{}).id,msg:""},ed:null,delp:false,add:null,addMsg:"",rst:false};
+if(!PR["YOG-400|Store A"]){const p=D.products[0];S.g.store=p.store;S.g.sku=p.sku;S.g.qty=p.pack*5;S.g.day=p.lead}
+const gp=()=>PR[S.g.sku+"|"+S.g.store],gk=()=>[S.g.sku,S.g.store,S.g.qty,S.g.day].join("|");
+const setGate=()=>{S.g.res=run(gp(),S.g.qty,S.g.day);S.g.key=gk()};setGate();
+// ---- small components
+const badge=l=>`<span class="badge" style="background:${RC[l]||"#888"}">${l}</span>`,abadge=a=>`<span class="badge" style="background:${AC[a]}">${AL[a]}</span>`;
+const kpi=(l,v,s="",a="")=>`<div class="card kc ${a?"click":""}" ${a}><div class="kl">${l}</div><div class="kv">${v}</div><div class="ks">${s}</div></div>`;
+const tbl=(h,rows)=>`<div class="tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const hbar=(it,fmt=x=>Math.round(x))=>{const m=Math.max(...it.map(i=>i.v),1);return`<div class="hb">${it.map(i=>`<div class="hr ${i.k?"click":""}" ${i.k?`data-a="open" data-v="${H(i.k)}"`:""}><span class="hl" title="${H(i.l)}">${H(i.l)}</span><span class="ht"><i style="width:${i.v/m*100}%;background:${i.c||"var(--g)"}"></i></span><b>${fmt(i.v)}</b></div>`).join("")}</div>`};
+const sel=(k,opts,v,x="")=>`<select data-k="${k}" ${x}>${opts.map(o=>{const[a,b]=Array.isArray(o)?o:[o,o];return`<option value="${H(a)}" ${a==v?"selected":""}>${H(b)}</option>`}).join("")}</select>`;
+const num=(k,v,mn=0,mx=5000)=>`<input type="number" data-k="${k}" data-t="n" min="${mn}" max="${mx}" value="${v}">`;
+const sld=(k,v,mn,mx,st,lab)=>`<label class="sl"><span>${lab}: <b>${v}</b></span><input type="range" data-k="${k}" data-t="n" min="${mn}" max="${mx}" step="${st}" value="${v}"></label>`;
+const ein=(E,f,v,i,t="n",lab="")=>`<label>${lab}<input data-e="${E}" data-f="${f}" ${i!==undefined?`data-i="${i}"`:""} ${t=="n"?'data-t="n" type="number" step="any"':""} value="${H(v)}"></label>`;
+const demo=`<div class="demo">✏️ Practice data. Everything here is made up so you can try the tool. Edit it under <b>Stock</b> or replace it with your own numbers.</div>`;
+function lineChart(a,b){const n=Math.min(a.length,16),W=640,Ht=240,m=36,mx=Math.max(...a.slice(0,n),...b.slice(0,n),1),X=i=>m+i*(W-m-10)/(n-1);
+ const pt=s=>s.slice(0,n).map((v,i)=>`${X(i)},${Ht-24-v/mx*(Ht-44)}`).join(" ");
+ return`<svg viewBox="0 0 ${W} ${Ht}" class="lc"><line x1="${m}" y1="${Ht-24}" x2="${W-10}" y2="${Ht-24}" class="axl"/>${[0,.5,1].map(f=>`<text x="2" y="${Ht-24-f*(Ht-44)+4}" class="ax">${Math.round(mx*f)}</text>`).join("")}
+ ${[0,5,10,15].filter(i=>i<n).map(i=>`<text x="${X(i)-10}" y="${Ht-6}" class="ax">${dstr(i)}</text>`).join("")}
+ <polyline points="${pt(a)}" fill="none" stroke="#d64545" stroke-width="3"/><polyline points="${pt(b)}" fill="none" stroke="var(--g)" stroke-width="3"/></svg>
+ <div class="lg"><span style="color:#d64545">● Your plan</span> &nbsp; <span style="color:var(--g)">● My suggestion</span></div>`}
+function impact(r){if(!r.proposed)return`<div class="note">No numbers to compare: there isn't enough sales history for me to judge this one.</div>`;
+ const a=r.proposed.o,b=r.rec.o;
+ return tbl(["","Your plan","My suggestion"],[["Units ordered",a.q,b.q],["Arrives",dstr(r.proposed.day),b.q?dstr(r.rec.day):"no order"],["Stock right after delivery",Math.round(a.ia),Math.round(b.ia)],
+ ["Likely waste (units)",Math.round(a.waste),Math.round(b.waste)],["Likely waste (value)",money(a.wv),money(b.wv)],["Waste risk",badge(a.wl),badge(b.wl)],
+ ["Likely shortfall (units)",Math.round(a.so),Math.round(b.so)],["Running-out risk",badge(a.sl),badge(b.sl)],["Sales minus order cost",money(a.net),money(b.net)]])+`<p class="cap">Based on three demand cases (a bit lower, expected, a bit higher). Stock you already hold is treated as paid for.</p>`}
+function decision(r,ref,noAp){const col=AC[r.action],pipe=`<div class="pipe">${r.pipe.map((s,i)=>`<div class="step" style="background:${SC[s[1]]}"><b>${s[0]}</b><span>${H(AL[s[2]]||s[2])}</span></div>${i<4?'<div class="arr">→</div>':""}`).join("")}</div>`;
+ const ex=r.ag.rp?`<details><summary>Show me the working</summary><p><b>Reorder check:</b> target ${Math.round(r.ag.rp.target)}, gap ${Math.round(Math.max(r.ag.rp.need,0))}, suggested ${r.ag.rp.q} units.</p>${tbl(["Rule","Passed?","Detail"],r.chk.map(c=>[c.name,c.ok?"✅":"❌",c.detail]))}
+ <p><b>Cheapest options I found</b> (waste cost + the cost of running out)</p>${tbl(["Qty","Arrives","Expected cost","Waste","Shortfall"],r.opts.slice(0,8).map(o=>[o.q,dstr(o.day),money(o.obj),Math.round(o.waste),Math.round(o.so)]))}</details>`:"";
+ return`<div class="banner" style="background:${col}"><small>${AL[r.action]}</small>${H(r.headline)}</div>${pipe}
+ <div class="two"><div><h4>Your plan</h4><div class="card"><div class="kv">${r.pq} units</div><div class="ks">arriving ${dstr(r.dd)}</div></div></div>
+ <div><h4>What I'd do</h4><div class="card" style="border:2px solid ${col}"><div class="kv">${r.rec.q?r.rec.q+" units":"No order"}</div><div class="ks">${r.rec.q?"arriving "+dstr(r.rec.day):"for now"}</div></div></div></div>
+ <h3>What changes</h3>${impact(r)}${r.proposed?`<h4>Stock level day by day</h4>${lineChart(r.proposed.o.tl,r.rec.o.tl)}`:""}
+ <h3>Why I say that</h3><ul class="why">${r.reasons.map(x=>`<li>${H(x)}</li>`).join("")}</ul>${ex}
+ <h3>Your call</h3>${noAp?`<div class="note">This is a what-if, so it doesn't touch your stock. To act on an order, use the <b>Order Gate</b>.</div>`:approval(r,ref)}`}
+function approval(r,ref){const a=S.ap;if(a.ref!==ref)Object.assign(a,{ref,choice:"Approve recommendation",mq:r.rec.q,md:r.rec.day,reason:"",msg:""});
+ return`<div class="card"><div class="row">${sel("ap.choice",[["Approve recommendation","Go with my suggestion"],["Modify","I'll change it"],["Reject (keep my original order)","Keep my original plan"]],a.choice)}
+ ${a.choice=="Modify"?`<label>Final quantity ${num("ap.mq",a.mq)}</label><label>Arrives in (days) ${num("ap.md",a.md,1,14)}</label>`:""}</div>
+ <input class="wide" data-k="ap.reason" placeholder="Why? (needed if you change it or keep your own plan)" value="${H(a.reason)}"><button class="btn" data-a="record">Save my decision</button><div class="msg">${a.msg}</div>
+ <p class="cap">Saving adds the order to your incoming deliveries and removes it from the waiting list.</p></div>`}
+function applyOrder(p,q,d,id){if(q>0)p.inc.push({id:id+"-D",qty:q,arr:d,exp:d+p.shelf})}
+function logIt(p,pq,pd,ai,dec,fin,reason){LOG.unshift({ts:new Date().toLocaleString("en-GB"),order:`${p.product}, ${p.store}: planned ${pq} for ${dstr(pd)}`,ai,dec,fin,reason})}
+function record(r){const a=S.ap;let q=r.rec.q,d=r.rec.day;
+ if(a.choice!="Approve recommendation"&&!a.reason.trim()){a.msg="⚠️ A short reason helps you remember later. Add one and save again.";return}
+ if(a.choice=="Modify"){q=a.mq;d=a.md}else if(a.choice.startsWith("Reject")){q=r.pq;d=r.dd}
+ const fin=q?`Order ${q} units, arriving ${dstr(d)}`:"No order",id="PO-"+(SEQ++);
+ applyOrder(r.p,q,d,id);logIt(r.p,r.pq,r.dd,`${AL[r.action]}: ${r.headline}`,{"Approve recommendation":"Went with suggestion",Modify:"Changed it"}[a.choice]||"Kept own plan",fin,a.reason.trim()||"Went with the suggestion");
+ D.pending=D.pending.filter(o=>!(o.sku==r.p.sku&&o.store==r.p.store));save();recompute();S.ap.msg=`✅ Saved: ${fin}.`}
+function decideQ(id,mode){const o=PEND.find(x=>x.id==id);if(!o)return;const r=o.res,acc=mode=="accept",q=acc?r.rec.q:o.qty,d=acc?r.rec.day:o.day;
+ applyOrder(o.p,q,d,id);logIt(o.p,o.qty,o.day,`${AL[r.action]}: ${r.headline}`,acc?"Went with suggestion":"Kept own plan",q?`Order ${q} units, arriving ${dstr(d)}`:"No order",acc?"Accepted from Today screen":"Kept own plan from Today screen");
+ D.pending=D.pending.filter(x=>x.id!=id);save();recompute()}
+function doSug(i){const s=SUG[i];if(!s)return;const p=s.o.p;
+ if(s.type=="Transfer"){const lot=p.lots.find(l=>l.id==s.id),dst=D.products.find(x=>x.sku==p.sku&&x.store==s.t.to);if(!lot||!dst)return;lot.qty-=s.t.q;
+  dst.lots.push({id:`${p.sku}-${s.t.to.slice(-1)}-T${SEQ++}`,qty:s.t.q,exp:lot.exp});logIt(p,0,0,"Move stock",`Moved ${s.t.q} units to ${s.t.to}`,"Transfer done","From suggestions")}
+ else{const lot=p.lots.find(l=>l.id==s.id);if(lot)lot.md=s.m.pct;logIt(p,0,0,"Mark down",`${s.m.pct}% markdown`,"Markdown planned","From suggestions")}
+ save();recompute()}
+const curRes=()=>S.page=="Order Gate"?S.g.res:PEND.find(o=>o.id==S.ap.oid).res;
+function evalLive(){if(EVAL)return EVAL;const rows=[];let i=0;
+ const rng=s=>()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296},
+ pois=(l,r)=>{if(l<=0)return 0;if(l>30){const u=r()||1e-9,v=r();return Math.max(0,Math.round(l+Math.sqrt(l)*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)))}let L=Math.exp(-l),k=0,p=1;do{k++;p*=r()}while(p>L);return k-1};
+ D.products.forEach(p=>{const dm=demand(p.sales);if(!dm.ok)return;const c=ctx(p),k=i++,mult=[.6,.8,1,1,1.2,1.4][k%6],delay=[0,1,0,0,2,0][k%6],r=rng(1000+k),day=p.lead,Hh=day+p.cycle+C.maxDelay;
+  const dmd=Array.from({length:C.maxSim+1},()=>pois(dm.base*mult,r)),pos=sum(c.lots.map(l=>l.qty))+sum(c.arr.map(a=>a.qty)),need=mean(p.sales.u)*7-pos;
+  const bq=need<=0?0:Math.max(Math.ceil(need/p.pack)*p.pack,Math.ceil(p.moq/p.pack)*p.pack),res=gate(c,bq,day,sibsOf(c)),none=fresh(c,dm,0,day,day+p.cycle);
+  [["Baseline",bq,day],["FreshGate",res.rec.q,res.rec.day]].forEach(([pol,q,d])=>{const arr=[...c.arr];if(q>0)arr.push({id:"NEW-ORDER",qty:q,arr:d+delay,exp:d+delay+p.shelf});
+   const s=sim(c.lots,arr,dmd,Hh,Hh+5);rows.push({id:"E"+String(k+1).padStart(2,"0"),product:p.product,store:p.store,policy:pol,q,waste:s.waste,wv:s.waste*p.cost,sod:s.sod,so:s.so,net:s.sold*p.price-q*p.cost,viol:checks(p,q,none.tl[Math.max(d-1,0)]).filter(x=>!x.ok).length,mult,delay})})});
+ const agg=pol=>{const r=rows.filter(x=>x.policy==pol),g=f=>sum(r.map(x=>x[f]));return{q:g("q"),waste:g("waste"),wv:g("wv"),sod:g("sod"),so:g("so"),net:g("net"),viol:g("viol")}};
+ return EVAL={rows,b:agg("Baseline"),s:agg("FreshGate"),n:i}}
+// ---- screens
+const P={},storeChips=()=>`<div class="chips">${["All",...STORES()].map(s=>`<button class="chip ${S.sf==s?"on":""}" data-a="sf" data-v="${s}">${s=="All"?"All stores":s}</button>`).join("")}</div>`;
+const greet=()=>{const h=new Date().getHours();return(h<12?"Good morning":h<17?"Good afternoon":"Good evening")+(CFG.user?`, ${H(CFG.user)}`:"")};
+function qcard(o){const r=o.res,a=r.proposed&&r.proposed.o;let why="";
+ if(r.action=="REVIEW")why=r.dem?r.dem.note:r.reasons[0];else if(a&&a.waste>=1&&(r.action=="REDUCE"||r.action=="DELAY"))why=`Ordering as planned could leave about ${Math.round(a.waste)} units (${money(a.wv)}) unsold.`;
+ else if(a&&a.so>=1)why=`Without a change you could run short by about ${Math.round(a.so)} units.`;else why="Stock, demand and shelf life all line up with your plan.";
+ return`<div class="qc"><div class="qh"><div><b>${H(o.p.product)}</b> <span class="mu">· ${o.p.store}</span></div>${abadge(r.action)}</div>
+ <div>You planned <b>${o.qty} units</b> for ${dstr(o.day)}. ${H(r.headline.replace(/^[^:]*:\s*/,""))}</div><div class="mu">${H(why)}</div>
+ <div class="qa">${r.action!="REVIEW"?`<button class="btn" data-a="accept" data-v="${o.id}">${r.action=="APPROVE"?"Place this order":"Go with my suggestion"}</button>`:""}<button class="btn ghost" data-a="keep" data-v="${o.id}">Keep my plan</button><button class="btn ghost" data-a="look" data-v="${o.id}">Look closer</button></div></div>`}
+P["Today"]=()=>{const sf=S.sf,ovs=OV.filter(o=>sf=="All"||o.p.store==sf),pq=PEND.filter(o=>sf=="All"||o.p.store==sf),sg=SUG.map((s,i)=>({...s,i})).filter(s=>sf=="All"||s.o.p.store==sf);
+ const w=ovs.filter(o=>o.waste!=null).sort((a,b)=>b.wv-a.wv).slice(0,7),rev=pq.filter(o=>o.res.action!="APPROVE").length;
+ return`<div class="top"><div><h1>${greet()}.</h1><p class="sub">Here's what needs a look${sf=="All"?" across your stores":" at "+sf}, and what you can do about it.</p></div><button class="btn" data-a="go" data-v="Order Gate">+ Check a new order</button></div>${storeChips()}${demo}
+ <div class="kg">${kpi("Products I'm watching",ovs.length,`${new Set(ovs.map(o=>o.p.sku)).size} items`,'data-a="go" data-v="Stock"')}${kpi("Close to expiring",ovs.filter(o=>o.wl=="High").length,"high waste risk",'data-a="go" data-v="Stock" data-f="inv.risk=High"')}
+ ${kpi("Might run out",ovs.filter(o=>o.sl=="High").length,"if you order nothing",'data-a="go" data-v="Stock" data-f="inv.srisk=High"')}${kpi("Likely to be wasted",Math.round(sum(ovs.map(o=>o.waste||0)))+" units",money(sum(ovs.map(o=>o.wv||0)))+" if nothing changes",'data-a="go" data-v="Freshness"')}
+ ${kpi("Orders waiting on you",pq.length,`${rev} I'd change or check`,'data-a="scroll" data-v="queue"')}</div>
+ <h2 id="queue">Orders waiting on you</h2>${pq.length?`<div class="qgrid">${pq.map(qcard).join("")}</div>`:`<div class="note">You're all caught up. Nothing is waiting. <a href="#" data-a="go" data-v="Order Gate">Check a new order</a> whenever you plan one.</div>`}
+ <h2>Stock worth saving</h2>${sg.length?`<div class="qgrid">${sg.slice(0,6).map(s=>`<div class="qc"><div class="qh"><div><b>${H(s.o.p.product)}</b> <span class="mu">· ${s.o.p.store}</span></div><span class="badge" style="background:${AC[s.type.toUpperCase()]}">${s.type}</span></div><div><b>${H(s.d)}</b> (lot ${H(s.id)})</div><div class="mu">${H(s.why)}. Worth about ${money(s.nb)}.</div><div class="qa"><button class="btn" data-a="sug" data-v="${s.i}">${s.type=="Transfer"?"Do the transfer":"Mark it down"}</button></div></div>`).join("")}</div>`:`<div class="note">Nothing to rescue right now.</div>`}
+ <div class="two"><div class="card"><h4>Most likely to go to waste (click one to check an order)</h4>${hbar(w.map(o=>({l:`${o.p.product} · ${o.p.store}`,v:o.wv,c:RC[o.wl],k:o.p.sku+"|"+o.p.store})),money)}</div>
+ <div class="card"><h4>Most stock on hand</h4>${hbar([...ovs].sort((a,b)=>b.stock-a.stock).slice(0,7).map(o=>({l:`${o.p.product} · ${o.p.store}`,v:o.stock,k:o.p.sku+"|"+o.p.store})))}</div></div>
+ ${LOG.length?`<h2>Decided recently</h2>${tbl(["When","What","You chose","Result"],LOG.slice(0,4).map(l=>[l.ts,H(l.order),l.dec,H(l.fin)]))}`:""}`};
+P["Stock"]=()=>{const f=S.inv,rows=OV.filter(o=>(!f.q||(o.p.product+o.p.sku).toLowerCase().includes(f.q.toLowerCase()))&&(f.store=="All"||o.p.store==f.store)&&(f.risk=="All"||o.wl==f.risk)&&(f.srisk=="All"||o.sl==f.srisk));
+ return`<div class="top"><div><h1>Stock</h1><p class="sub">Everything you hold. Click <b>Edit</b> on a row to change stock, dates, prices or sales.</p></div><button class="btn" data-a="addprod">+ Add a product</button></div>${demo}
+ ${S.add?addForm():""}${S.ed&&PR[S.ed]?editor():""}
+ <div class="row"><label>Search<input data-k="inv.q" placeholder="milk, YOG-400…" value="${H(f.q)}"></label><label>Store${sel("inv.store",["All",...STORES()],f.store)}</label><label>Waste risk${sel("inv.risk",["All","High","Medium","Low","Unknown"],f.risk)}</label><label>Running-out risk${sel("inv.srisk",["All","High","Medium","Low","Unknown"],f.srisk)}</label></div>
+ ${rows.length?tbl(["Product","Store","On hand","Coming","Sells/day","Next expiry","Waste risk","Running-out risk",""],rows.map(o=>[`<b>${H(o.p.product)}</b><br><span class="mu">${H(o.p.sku)}</span>`,o.p.store,Math.round(o.stock),Math.round(o.inc),o.avg.toFixed(1),o.next!=null?dstr(o.next):"-",badge(o.wl),badge(o.sl),`<button class="btn sm ghost" data-a="edit" data-v="${H(o.p.sku+"|"+o.p.store)}">Edit</button>`])):`<div class="note">Nothing matches those filters. Clear one and try again.</div>`}
+ <p class="cap">Risks assume you place no new order. "Unknown" means there isn't enough sales history to forecast.</p>`};
+function editor(){const p=PR[S.ed],avg=p.sales.u.length?mean(p.sales.u.slice(-7)):0;
+ return`<div class="card ed"><div class="top"><h3 style="margin:0">Editing: ${H(p.product)} · ${p.store}</h3><button class="btn sm ghost" data-a="closeedit">Done</button></div>
+ <div class="fg">${ein("p","product",p.product,undefined,"t","Name")}${ein("p","cat",p.cat,undefined,"t","Category")}${ein("sales","avg",avg.toFixed(1),undefined,"n","Typical sales per day")}${ein("p","shelf",p.shelf,undefined,"n","Shelf life when it arrives (days)")}
+ ${ein("p","cost",p.cost,undefined,"n","Cost per unit")}${ein("p","price",p.price,undefined,"n","Selling price")}${ein("p","moq",p.moq,undefined,"n","Minimum order")}${ein("p","pack",p.pack,undefined,"n","Pack size")}
+ ${ein("p","cap",p.cap,undefined,"n","Shelf/storage capacity")}${ein("p","safety",p.safety,undefined,"n","Safety stock")}${ein("p","lead",p.lead,undefined,"n","Delivery takes (days)")}${ein("p","cycle",p.cycle,undefined,"n","Days until next order")}</div>
+ <h4>Batches on the shelf</h4>${p.lots.length?tbl(["Batch","Units","Days until it expires",""],p.lots.map((l,i)=>[H(l.id)+(l.md?` <span class="badge" style="background:#7a4fb0">${l.md}% off</span>`:""),ein("lot","qty",l.qty,i),ein("lot","exp",l.exp,i),`<button class="btn sm ghost" data-a="dellot" data-v="${i}">Remove</button>`])):"<p class='mu'>No batches. This item is out of stock.</p>"}
+ <button class="btn sm" data-a="addlot">+ Add a batch</button><h4>Deliveries on the way</h4>${p.inc.length?tbl(["Delivery","Units","Arrives in (days)","Expires in (days)",""],p.inc.map((a,i)=>[H(a.id),ein("inc","qty",a.qty,i),ein("inc","arr",a.arr,i),ein("inc","exp",a.exp,i),`<button class="btn sm ghost" data-a="delinc" data-v="${i}">Remove</button>`])):"<p class='mu'>Nothing on the way.</p>"}
+ <button class="btn sm" data-a="addinc">+ Add a delivery</button><p class="cap">Changes save instantly and every screen recalculates.</p>
+ <button class="btn sm danger" data-a="delprod">${S.delp?"Click again to really delete":"Delete this product"}</button></div>`}
+const ADD0=()=>({sku:"",product:"",cat:"Dairy",store:STORES()[0]||"Store A",shelf:5,cost:40,price:60,moq:12,pack:6,cap:200,safety:10,lead:1,cycle:3,daily:20,qty:40,exp:3});
+function addForm(){const a=S.add;return`<div class="card ed"><h3 style="margin:0 0 8px">Add a product</h3><div class="fg">${ein("add","product",a.product,undefined,"t","Name")}${ein("add","sku",a.sku,undefined,"t","Short code (e.g. MLK-1L)")}${ein("add","cat",a.cat,undefined,"t","Category")}${ein("add","store",a.store,undefined,"t","Store")}
+ ${ein("add","daily",a.daily,undefined,"n","Sells per day")}${ein("add","qty",a.qty,undefined,"n","Units on hand")}${ein("add","exp",a.exp,undefined,"n","Days until they expire")}${ein("add","shelf",a.shelf,undefined,"n","Shelf life on arrival (days)")}
+ ${ein("add","cost",a.cost,undefined,"n","Cost per unit")}${ein("add","price",a.price,undefined,"n","Selling price")}${ein("add","moq",a.moq,undefined,"n","Minimum order")}${ein("add","pack",a.pack,undefined,"n","Pack size")}
+ ${ein("add","cap",a.cap,undefined,"n","Capacity")}${ein("add","safety",a.safety,undefined,"n","Safety stock")}${ein("add","lead",a.lead,undefined,"n","Delivery takes (days)")}${ein("add","cycle",a.cycle,undefined,"n","Days until next order")}</div>
+ <button class="btn" data-a="saveadd">Add it</button> <button class="btn ghost" data-a="canceladd">Cancel</button><div class="msg">${S.addMsg}</div></div>`}
+P["Order Gate"]=()=>{const g=S.g,p=gp(),c=ctx(p),stale=g.key!=gk();
+ return`<h1>Order Gate</h1><p class="sub">Tell me what you're thinking of ordering. I'll check it against your stock, your dates and your sales before it goes out.</p>${demo}
+ <div class="row"><label>Store${sel("g.store",STORES(),g.store)}</label><label>Product${sel("g.sku",D.products.filter(x=>x.store==g.store).map(x=>[x.sku,x.product]),g.sku)}</label>
+ <label>How many?${num("g.qty",g.qty)}</label><label>Arrives in (days) <small>${dstr(g.day)}</small>${num("g.day",g.day,1,14)}</label><button class="btn" data-a="rungate">Check this order</button></div>
+ <div class="kg">${kpi("On the shelf",Math.round(sum(c.lots.map(l=>l.qty))),c.lots.length+" batches")}${kpi("On the way",Math.round(sum(c.arr.map(a=>a.qty))),c.arr.map(a=>`${a.qty} on ${dstr(a.arr)}`).join(", ")||"nothing scheduled")}
+ ${kpi("Shelf life",p.shelf+" days",`min order ${p.moq} · packs of ${p.pack}`)}${kpi("Room / safety stock",p.cap+" / "+p.safety,"units")}</div>
+ <details><summary>Batches and expiry dates</summary>${tbl(["Batch","Units","Expires","Days left"],c.lots.map(l=>[l.id,l.qty,dstr(l.exp),l.exp]))}</details>
+ ${stale?`<div class="warn">You changed something. Press <b>Check this order</b> to refresh the answer below.</div>`:""}${decision(g.res,"gate:"+g.key)}`};
+P["Freshness"]=()=>{const r=LOTS.filter(x=>x.u>=1).sort((a,b)=>b.loss-a.loss),sg=SUG.map((s,i)=>({...s,i}));
+ return`<h1>Freshness</h1><p class="sub">Batches I think won't sell before their date.</p>${demo}<div class="note">These are <b>predictions</b> from a simulation, not recorded waste. This tool doesn't store what was actually thrown away.</div>
+ <div class="kg">${kpi("Batches at risk",r.length,"predicted")}${kpi("Units that may expire",Math.round(sum(r.map(x=>x.u))),"if nothing changes")}${kpi("Value at risk",money(sum(r.map(x=>x.loss))),"at cost")}</div>
+ ${r.length?`<div class="card"><h4>Biggest worries</h4>${hbar(r.slice(0,8).map(x=>({l:`${x.o.p.product} · ${x.o.p.store} · ${x.l.exp}d left`,v:x.u,c:RC[x.risk],k:x.o.p.sku+"|"+x.o.p.store})))}</div>
+ ${tbl(["Product","Store","Batch","Units","Expires","Days left","May go unsold","Value at risk","Risk"],r.map(x=>[H(x.o.p.product),x.o.p.store,H(x.l.id),x.l.qty,dstr(x.l.exp),x.l.exp,Math.round(x.u),money(x.loss),badge(x.risk)]))}`:`<div class="note">Nothing looks likely to expire unsold. 🎉</div>`}
+ <h3>What you could do about it</h3>${sg.length?tbl(["Product","Store","Idea","Batch","What","Worth about","Why",""],sg.map(s=>[H(s.o.p.product),s.o.p.store,s.type,H(s.id),H(s.d),money(s.nb),H(s.why),`<button class="btn sm" data-a="sug" data-v="${s.i}">${s.type=="Transfer"?"Do it":"Mark down"}</button>`])):"Nothing worth doing right now."}
+ <p class="cap">Assumptions (change them in Settings): moving stock costs ${CFG.cur}${C.tcost} a unit and takes a day; a markdown sells ${C.el}% more units per 1% off. That figure is a guess, not a measurement.</p>`};
+P["What-if"]=()=>{const s=S.sm;let p=PR[s.sku+"|"+s.store];if(!p){p=D.products.find(x=>x.store==s.store)||D.products[0];s.sku=p.sku;s.store=p.store}
+ const o={dem:s.dem,inc:s.inc,delay:s.delay,shift:s.shift},base=run(p,s.qty,s.day),res=run(p,s.qty,s.day,o);
+ const k=res.proposed?(()=>{const a=base.proposed.o,b=res.proposed.o;return`<div class="kg">${kpi("Likely waste",Math.round(b.waste)+" units","was "+Math.round(a.waste))}${kpi("Likely shortfall",Math.round(b.so)+" units",`was ${Math.round(a.so)} · risk ${b.sl.toLowerCase()}`)}${kpi("My advice",AL[res.action],"was "+AL[base.action])}${kpi("Suggested order",res.rec.q,"was "+base.rec.q)}</div>`})():"";
+ return`<h1>What-if</h1><p class="sub">Push demand, deliveries and dates around and see how my advice changes. Nothing here touches your real stock.</p>${demo}
+ <label>Pick a story${sel("sm.pick",PREP.map((x,i)=>[i,x.t]),s.pick)}</label><div class="card">${PREP[s.pick].x}</div>
+ <div class="row"><label>Store${sel("sm.store",STORES(),s.store)}</label><label>Product${sel("sm.sku",D.products.filter(x=>x.store==s.store).map(x=>[x.sku,x.product]),s.sku)}</label><label>Order size${num("sm.qty",s.qty)}</label></div>
+ <div class="sg">${sld("sm.day",s.day,1,14,1,"Arrives in (days)")}${sld("sm.dem",s.dem,.3,2,.05,"Demand vs forecast (×)")}${sld("sm.inc",s.inc,0,2,.1,"Incoming deliveries (×)")}${sld("sm.delay",s.delay,0,7,1,"Deliveries late by (days)")}${sld("sm.shift",s.shift,-3,3,1,"Dates move by (days)")}</div>
+ ${k}${decision(res,"sim",true)}`};
+P["Decisions"]=()=>{const o=PEND.find(x=>x.id==S.ap.oid)||PEND[0];if(o)S.ap.oid=o.id;
+ return`<h1>Decisions</h1><p class="sub">Open an order, read my reasoning, then approve it, change it or keep your own plan. Every choice is kept in a log.</p>${demo}
+ ${o?`${sel("ap.oid",PEND.map(x=>[x.id,`${x.p.product} · ${x.p.store} · ${x.qty} units → ${AL[x.res.action]}`]),o.id)}<div class="banner" style="background:${AC[o.res.action]}"><small>${AL[o.res.action]}</small>${H(o.res.headline)}</div>
+ <h4>Why</h4><ul class="why">${o.res.reasons.map(x=>`<li>${H(x)}</li>`).join("")}</ul>${approval(o.res,"q:"+o.id)}`:`<div class="note">No orders are waiting. Check a new one in the Order Gate.</div>`}
+ <h3>Your decision log</h3>${LOG.length?tbl(["When","Order","What I said","What you chose","Result","Your reason"],LOG.map(l=>[l.ts,H(l.order),H(l.ai),l.dec,H(l.fin),H(l.reason)])):"Nothing logged yet."}
+ <div class="row"><button class="btn ghost" data-a="exportlog">Download log (CSV)</button></div><p class="cap">The log lives in this browser on this device. It isn't shared and disappears if you clear browser data, so download it if it matters.</p>`};
+P["Compare"]=()=>{const e=evalLive(),b=e.b,s=e.s,f=x=>Math.round(x).toLocaleString("en-IN");
+ const M=[["Units ordered","q",f],["Units wasted","waste",f],["Waste value","wv",x=>money(x)],["Days with something out of stock","sod",f],["Units short","so",f],["Sales minus order cost","net",x=>money(x)],["Rule breaks (minimum, pack, capacity)","viol",f]];
+ return`<h1>Compare</h1><p class="sub">How does checking orders with ${H(CFG.brand)} compare with just ordering up to ${7} days of sales?</p>${demo}
+ <p>I replay <b>${e.n} made-up situations</b> built from your current stock. Real demand lands anywhere from 0.6× to 1.4× the forecast, and some deliveries are 1–2 days late. The simple policy orders as it always would; ${H(CFG.brand)} reviews that same order. Both face the same random demand. The results change when you edit your stock.</p>
+ ${tbl(["","Simple policy",H(CFG.brand)],M.map(([l,k,fm])=>[l,fm(b[k]),fm(s[k])]))}
+ <div class="two"><div class="card"><h4>Units wasted</h4>${hbar([{l:"Simple policy",v:b.waste,c:"#97a09a"},{l:CFG.brand,v:s.waste}])}</div><div class="card"><h4>Units short</h4>${hbar([{l:"Simple policy",v:b.so,c:"#97a09a"},{l:CFG.brand,v:s.so}])}</div></div>
+ <div class="warn"><b>Read this honestly:</b> these are simulated results, not real-world savings. ${s.so>b.so?`${H(CFG.brand)} wastes less but runs short more often here. It trades some availability for freshness. If that's not the trade you want, raise the cost of running out in Settings.`:s.waste<b.waste?`${H(CFG.brand)} wastes less here without running short more often.`:`${H(CFG.brand)} doesn't beat the simple policy on waste with the current data.`}</div>
+ <details><summary>How each number is worked out</summary><ul class="why"><li>Daily demand is drawn at random around (recent average × the scenario's demand level), with the same draws for both policies.</li><li>Waste means units still on the shelf on their expiry date. The oldest stock is sold first.</li><li>Sales minus order cost ignores the cost of stock you already held.</li><li>A rule break is an order under the minimum, off pack size or over capacity.</li></ul></details>
+ <details><summary>Situation by situation</summary>${tbl(["#","Product","Store","Policy","Ordered","Wasted","Days short","Units short","Net","Rule breaks"],e.rows.map(r=>[r.id,H(r.product),r.store,r.policy,r.q,Math.round(r.waste),r.sod,Math.round(r.so),f(r.net),r.viol]))}</details>`};
+P["Settings"]=()=>{const t=(l,f,v,k="cfg",ty="t")=>ein(k,f,v,undefined,ty,l);
+ return`<h1>Settings</h1><p class="sub">Make it yours. Rename it, change the numbers I assume, or start over with your own data.</p>
+ <h3>Look and wording</h3><div class="card"><div class="fg">${t("App name","brand",CFG.brand)}${t("Tagline","tagline",CFG.tagline)}${t("Your name (for the greeting)","user",CFG.user||"")}${t("Currency symbol","cur",CFG.cur)}
+ <label>Accent colour<input type="color" data-e="cfg" data-f="accent" value="${CFG.accent}"></label></div></div>
+ <h3>What I assume</h3><div class="card"><div class="fg">${t("Cost of running out (× the profit on a unit)","pen",C.pen,"asm","n")}${t("Moving stock costs (per unit)","tcost",C.tcost,"asm","n")}${t("Smallest worthwhile transfer (units)","minT",C.minT,"asm","n")}
+ ${t("Markdown effect (% more sold per 1% off)","el",C.el,"asm","n")}${t("Furthest I may push a delivery back (days)","maxDelay",C.maxDelay,"asm","n")}${t("Waste counts as 'medium' above (%)","lo",C.lo*100,"asm","n")}${t("…and 'high' above (%)","hi",C.hi*100,"asm","n")}${t("Days of sales I average for the forecast (3–14)","ma",C.ma,"asm","n")}</div>
+ <p class="cap">A higher cost of running out makes me order more freely. A lower one makes me stricter about waste.</p></div>
+ <h3>Your data</h3><div class="card"><div class="row"><button class="btn ghost" data-a="backup">Download a backup</button><label>Restore a backup<input type="file" accept=".json" data-a="restore"></label>
+ <button class="btn danger" data-a="reset">${S.rst?"Click again to wipe everything and restore the practice data":"Reset to practice data"}</button></div><div class="msg">${S.setMsg||""}</div>
+ <p class="cap">Everything is stored in this browser on this device only.</p></div>`};
+// ---- render + events
+function render(){const y=window.scrollY;document.title=CFG.brand+" · "+CFG.tagline;document.documentElement.style.setProperty("--g",CFG.accent);
+ document.getElementById("bn").textContent=CFG.brand;document.getElementById("bt").textContent=CFG.tagline;
+ document.getElementById("nav").innerHTML=PAGES.map(p=>`<button class="${p==S.page?"on":""}" data-a="nav" data-v="${p}">${p}</button>`).join("");
+ document.getElementById("main").innerHTML=P[S.page]();window.scrollTo(0,y)}
+const setPath=(k,v)=>{const[a,b]=k.split(".");S[a][b]=v},dl=(name,txt,type)=>{try{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()}catch(e){}};
+function editField(E,f,i,v,n){const p=PR[S.ed],val=n?Number(v):v;
+ if(E=="p"){p[f]=n?(isNaN(val)?p[f]:Math.max(0,val)):v}
+ else if(E=="sales"){const old=mean(p.sales.u.slice(-7))||0;p.sales.u=old>0?p.sales.u.map(x=>x*val/old):p.sales.u.map(()=>val);p.sales.n=Math.max(p.sales.n,14)}
+ else if(E=="lot"){p.lots[i][f]=val}else if(E=="inc"){p.inc[i][f]=val}
+ else if(E=="add"){S.add[f]=n?val:v}
+ else if(E=="cfg"){CFG[f]=v}else if(E=="asm"){C[f]=(f=="lo"||f=="hi")?val/100:val}
+ if(E!="add")save();recompute()}
+document.addEventListener("click",e=>{const t=e.target.closest("[data-a]");if(!t||t.tagName=="INPUT")return;const a=t.dataset.a,v=t.dataset.v;if(t.tagName=="A")e.preventDefault();
+ const nav=pg=>{S.page=pg;window.scrollTo(0,0)};
+ if(a=="nav")nav(v);
+ else if(a=="go"){if(t.dataset.f){const[k,val]=t.dataset.f.split("=");if(k.startsWith("inv.")){S.inv={q:"",store:"All",risk:"All",srisk:"All"}}setPath(k,val)}nav(v)}
+ else if(a=="scroll"){render();const el=document.getElementById(v);if(el)el.scrollIntoView({behavior:"smooth"});return}
+ else if(a=="sf")S.sf=v;
+ else if(a=="rungate")setGate();
+ else if(a=="record")record(curRes());
+ else if(a=="accept"||a=="keep")decideQ(v,a=="accept"?"accept":"keep");
+ else if(a=="look"){const o=PEND.find(x=>x.id==v);Object.assign(S.g,{store:o.p.store,sku:o.p.sku,qty:o.qty,day:o.day});setGate();nav("Order Gate")}
+ else if(a=="open"){const[s,st]=v.split("|"),p=PR[v];if(p){Object.assign(S.g,{store:st,sku:s});const pe=D.pending.find(o=>o.sku==s&&o.store==st);S.g.qty=pe?pe.qty:p.pack*5;S.g.day=pe?pe.day:p.lead;setGate();nav("Order Gate")}}
+ else if(a=="sug")doSug(Number(v));
+ else if(a=="edit"){S.ed=v;S.delp=false;S.add=null}
+ else if(a=="closeedit"){S.ed=null;S.delp=false}
+ else if(a=="addlot"){const p=PR[S.ed];p.lots.push({id:`${p.sku}-${p.store.slice(-1)}-N${SEQ++}`,qty:10,exp:Math.min(p.shelf,5)});save();recompute()}
+ else if(a=="dellot"){PR[S.ed].lots.splice(Number(v),1);save();recompute()}
+ else if(a=="addinc"){const p=PR[S.ed];p.inc.push({id:`IN-${SEQ++}`,qty:p.pack*2,arr:p.lead,exp:p.lead+p.shelf});save();recompute()}
+ else if(a=="delinc"){PR[S.ed].inc.splice(Number(v),1);save();recompute()}
+ else if(a=="delprod"){if(!S.delp){S.delp=true}else{const p=PR[S.ed];D.products=D.products.filter(x=>x!==p);D.pending=D.pending.filter(o=>!(o.sku==p.sku&&o.store==p.store));S.ed=null;S.delp=false;save();recompute()}}
+ else if(a=="addprod"){S.add=ADD0();S.addMsg="";S.ed=null}
+ else if(a=="canceladd")S.add=null;
+ else if(a=="saveadd"){const x=S.add,m=[];if(!x.product.trim())m.push("give it a name");if(!x.sku.trim())m.push("give it a short code");if(!x.store.trim())m.push("pick a store");
+  if(D.products.some(p=>p.sku==x.sku.trim()&&p.store==x.store.trim()))m.push("that code already exists in that store");if(!(x.pack>0))m.push("pack size must be above 0");if(!(x.daily>0))m.push("sales per day must be above 0");
+  if(m.length)S.addMsg="⚠️ Please "+m.join(", ")+".";else{const u=Array(14).fill(Number(x.daily)),sku=x.sku.trim(),st=x.store.trim();
+   D.products.push({sku,product:x.product.trim(),cat:x.cat,store:st,shelf:x.shelf,cost:x.cost,price:x.price,moq:x.moq,pack:x.pack,cap:x.cap,safety:x.safety,lead:x.lead,cycle:x.cycle,sales:{n:14,u},lots:x.qty>0?[{id:`${sku}-${st.slice(-1)}-L1`,qty:x.qty,exp:Math.max(1,x.exp)}]:[],inc:[]});
+   S.ed=sku+"|"+st;S.add=null;save();recompute()}}
+ else if(a=="exportlog"){dl("decision-log.csv",["When,Order,What I said,What you chose,Result,Your reason",...LOG.map(l=>[l.ts,l.order,l.ai,l.dec,l.fin,l.reason].map(c=>`"${String(c).replace(/"/g,'""')}"`).join(","))].join("\n"),"text/csv")}
+ else if(a=="backup"){dl("freshgate-backup.json",JSON.stringify({base:todayISO(),products:D.products,pending:D.pending,cfg:CFG,C,log:LOG,seq:SEQ}),"application/json")}
+ else if(a=="reset"){if(!S.rst){S.rst=true}else{D.products=JSON.parse(JSON.stringify(D0.products));D.pending=JSON.parse(JSON.stringify(D0.pending));Object.assign(C,C0);Object.assign(CFG,CFG0);LOG=[];SEQ=100;S.rst=false;S.ed=null;S.setMsg="✅ Practice data restored.";save();recompute();setGate()}}
+ render()});
+document.addEventListener("change",e=>{const t=e.target;
+ if(t.dataset.a=="restore"){const f=t.files[0];if(!f)return;f.text().then(x=>{try{const s=JSON.parse(x);D.products=s.products;D.pending=s.pending;Object.assign(CFG,s.cfg);Object.assign(C,s.C);LOG=s.log||[];SEQ=s.seq||100;save();recompute();setGate();S.setMsg="✅ Backup restored."}catch(err){S.setMsg="⚠️ That file doesn't look like a backup."}render()});return}
+ if(t.dataset.e){editField(t.dataset.e,t.dataset.f,t.dataset.i===undefined?undefined:Number(t.dataset.i),t.value,t.dataset.t=="n");render();return}
+ if(!t.dataset.k)return;const k=t.dataset.k;let v=t.dataset.t=="n"?Number(t.value):t.value;
+ if(k=="g.qty"||k=="g.day")v=Math.max(k=="g.day"?1:0,Math.min(k=="g.day"?14:5000,Math.round(v||0)));
+ setPath(k,v);
+ if(k=="g.store")S.g.sku=D.products.find(p=>p.store==v).sku;
+ if(k=="g.store"||k=="g.sku"){const p=gp(),pe=D.pending.find(o=>o.sku==p.sku&&o.store==p.store);S.g.qty=pe?pe.qty:p.pack*5;S.g.day=pe?pe.day:p.lead;setGate()}
+ if(k=="sm.pick"){Object.assign(S.sm,PREP[v]);S.sm.pick=Number(v)}
+ if(k=="sm.store")S.sm.sku=D.products.find(p=>p.store==v).sku;
+ if(k=="ap.oid")S.ap.ref=null;
+ render()});
+render();
+
+</script></body></html>
